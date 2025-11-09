@@ -1,0 +1,521 @@
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/main"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".CreateOrder"
+	android:background="@color/white">
+
+	<!-- Include header -->
+	<include
+		android:id="@+id/header"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		layout="@layout/profile_header"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent" />
+
+	<!-- Content below header -->
+
+	<ScrollView
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/header"
+		app:layout_constraintVertical_bias="1.0">
+		<LinearLayout
+			android:id="@+id/createOrderContent"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:padding="10dp">
+
+			<!-- Title -->
+			<TextView
+				android:id="@+id/title_text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:gravity="center"
+				android:text="Create Your Order"
+				android:textColor="@color/black"
+				android:textSize="45dp"
+				android:textStyle="bold" />
+
+			<!-- Subtitle/description -->
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="Fill in the details below to schedule your laundry service"
+				android:textColor="@color/secondary_font_color"
+				android:textSize="18dp" />
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/custom_shape"
+				android:orientation="vertical"
+				android:padding="10dp">
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="Order Details"
+					android:textColor="@color/black"
+					android:textSize="20dp"
+					android:textStyle="bold" />
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp" />
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+
+					<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:src="@drawable/address_icon" />
+
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="Address"
+						android:textColor="@color/black"
+						android:textSize="18dp"
+						android:textStyle="bold" />
+				</LinearLayout>
+
+				<EditText
+					android:id="@+id/address"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/custom_shape"
+					android:hint="454, Gumitna, Pinalagdan, Paombong, Bulacan"
+					android:padding="10dp"
+					android:textSize="16dp"
+					android:textColor="@color/black"/>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp" />
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/custom_shape"
+					android:orientation="vertical"
+					android:padding="15dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Select Washable Items"
+						android:textColor="@color/black"
+						android:textSize="18dp"
+						android:textStyle="bold" />
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:background="@drawable/custom_shape">
+
+						<Spinner
+							android:id="@+id/washableItems"
+							android:layout_width="0dp"
+							android:layout_height="match_parent"
+							android:layout_weight="1" />
+
+						<Button
+							android:id="@+id/addToCartButton"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:background="@drawable/black_button"
+							android:padding="10dp"
+							android:text="Add to cart"
+							android:textColor="@color/white"
+							android:backgroundTint="@color/black"/>
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp" />
+
+				<LinearLayout
+					android:id="@+id/yourOrderSection"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/custom_shape"
+					android:orientation="vertical"
+					android:padding="15dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Your Order"
+						android:textColor="@color/black"
+						android:textSize="18dp"
+						android:textStyle="bold" />
+
+					<LinearLayout
+						android:id="@+id/orderListContainer"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dp"
+						android:orientation="vertical" />
+
+				</LinearLayout>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp" />
+
+				<LinearLayout
+					android:id="@+id/typesOfService"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/custom_shape"
+					android:orientation="vertical"
+					android:padding="15dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Type of Service"
+						android:textColor="@color/black"
+						android:textSize="18dp"
+						android:textStyle="bold" />
+
+					<RadioGroup
+						android:id="@+id/serviceGroup"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<RadioButton
+							android:id="@+id/superbRadioButton"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Superb Service"
+							android:textColor="@color/black"/>
+
+						<RadioButton
+							android:id="@+id/goodRadioButton"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Good Service"
+							android:textColor="@color/black"/>
+
+						<RadioButton
+							android:id="@+id/budgetRadioButton"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Budget Service"
+							android:textColor="@color/black"/>
+
+						<RadioButton
+							android:id="@+id/studentPackRadioButton"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Student Pack Service"
+							android:textColor="@color/black"/>
+
+						<RadioButton
+							android:id="@+id/dryCleaningRadioButton"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Dry Cleaning Service"
+							android:textColor="@color/black"/>
+
+						<RadioButton
+							android:id="@+id/superbThickRadioButton"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Superb-Thick Service"
+							android:textColor="@color/black"/>
+
+					</RadioGroup>
+
+				</LinearLayout>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp" />
+
+				<LinearLayout
+					android:id="@+id/transferMode"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/custom_shape"
+					android:orientation="vertical"
+					android:padding="15dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Mode of Laundry Transfer"
+						android:textColor="@color/black"
+						android:textSize="18dp"
+						android:textStyle="bold" />
+
+					<RadioGroup
+						android:id="@+id/transferGroup"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+
+						<RadioButton
+							android:id="@+id/transfer1"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="Pickup"
+							android:textColor="@color/black"/>
+
+						<RadioButton
+							android:id="@+id/transfer2"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="Deliver"
+							android:textColor="@color/black"/>
+
+					</RadioGroup>
+
+				</LinearLayout>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/custom_shape"
+					android:orientation="vertical"
+					android:padding="15dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Laundry Transfer Date"
+						android:textColor="@color/black"
+						android:textSize="18dp"
+						android:textStyle="bold" />
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+
+						<TextView
+							android:id="@+id/transferDate"
+							android:layout_width="0dp"
+							android:layout_weight="1"
+							android:layout_height="wrap_content"
+							android:background="@drawable/custom_shape"
+							android:padding="10dp"
+							android:gravity="center"
+							android:text="mm/dd/yyyy"
+							android:textColor="@color/black"/>
+
+						<Space
+							android:layout_width="5dp"
+							android:layout_height="0dp"/>
+
+						<TextView
+							android:id="@+id/transferTime"
+							android:layout_width="0dp"
+							android:layout_weight="1"
+							android:layout_height="wrap_content"
+							android:background="@drawable/custom_shape"
+							android:padding="10dp"
+							android:gravity="center"
+							android:text="00:00am/pm"
+							android:textColor="@color/black"/>
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp"/>
+
+				<LinearLayout
+					android:id="@+id/claimingMode"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/custom_shape"
+					android:orientation="vertical"
+					android:padding="15dp">
+
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="How would you like to receive your clean laundry?"
+						android:textColor="@color/black"
+						android:textSize="18dp"
+						android:textStyle="bold" />
+
+					<RadioGroup
+						android:id="@+id/claimingGroup"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+
+						<RadioButton
+							android:id="@+id/claim1"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="Pickup"
+							android:textColor="@color/black"/>
+
+						<RadioButton
+							android:id="@+id/claim2"
+							android:layout_width="0dp"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:text="Drop-Off (Deliver to your front door)"
+							android:textColor="@color/black"/>
+
+					</RadioGroup>
+
+				</LinearLayout>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp"/>
+
+				<LinearLayout
+					android:id="@+id/payment"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/custom_shape"
+					android:orientation="vertical"
+					android:padding="15dp">
+
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="Payment Method"
+						android:textColor="@color/black"
+						android:textSize="18dp"
+						android:textStyle="bold" />
+
+					<RadioGroup
+						android:id="@+id/paymentGroup"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+
+						<RadioButton
+							android:id="@+id/cash"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:text="Cash"
+							android:textColor="@color/black"/>
+
+						<RadioButton
+							android:id="@+id/gcash"
+							android:layout_width="0dp"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:text="GCash"
+							android:textColor="@color/black"/>
+
+					</RadioGroup>
+
+				</LinearLayout>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp"/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:background="@drawable/custom_shape"
+					android:orientation="vertical"
+					android:padding="15dp">
+
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="Additional Notes (Optional)"
+						android:textColor="@color/black"
+						android:textSize="18dp"
+						android:textStyle="bold" />
+
+					<EditText
+						android:id="@+id/additionalNotes"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:background="@drawable/custom_shape"
+						android:padding="10dp"
+						android:hint="Any special instructions ..."
+						android:textSize="16dp"
+						android:minHeight="100dp"
+						android:gravity="top|left"
+						android:textColor="@color/black"/>
+
+				</LinearLayout>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp"/>
+
+				<TextView
+					android:id="@+id/cost"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="Estimated Cost: "
+					android:textColor="@color/black"
+					android:textStyle="bold"/>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp"/>
+
+				<Button
+					android:id="@+id/reviewOrder"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="Review Order Summary"
+					android:background="@drawable/black_button"
+					android:textColor="@color/white"
+					android:textSize="18dp"
+					android:textStyle="bold"
+					android:padding="20dp"/>
+
+				<Space
+					android:layout_width="0dp"
+					android:layout_height="5dp"/>
+
+				<Button
+					android:id="@+id/back"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="Back"
+					android:background="@drawable/custom_shape"
+					android:textSize="18dp"
+					android:textStyle="bold"
+					android:padding="20dp"/>
+
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

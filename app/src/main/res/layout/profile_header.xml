@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:paddingVertical="5dp"
+	android:paddingHorizontal="5dp"
+	android:gravity="center_vertical"
+	android:background="@drawable/custom_shape">
+
+	<!-- Back button -->
+	<ImageButton
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/account_circle"
+		android:background="@android:color/transparent"
+		android:contentDescription="Back button"
+		android:scaleType="centerInside"
+		android:padding="8dp" />
+
+	<!-- Full name -->
+	<TextView
+		android:id="@+id/fullname"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Jerson Valdez"
+		android:textSize="18sp"
+		android:textColor="@android:color/black"
+		android:textStyle="bold"/>
+</LinearLayout>
