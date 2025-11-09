@@ -1,0 +1,31 @@
+package com.example.labable_mobile;
+
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class CustomerDashboard extends AppCompatActivity {
+
+    Order[] orders = new Order[]{
+            new Order("Paombong",
+            new OrderItem[]{new OrderItem("Brief", 5), new OrderItem("Pants" , 2)},
+ "Wash", "Drop-off", "Bukas", "Pick-up", "Cash",
+      "May ipot yung iba"),
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_customer_dashboard);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+}
