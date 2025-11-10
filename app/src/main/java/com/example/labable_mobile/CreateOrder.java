@@ -47,7 +47,7 @@ public class CreateOrder extends AppCompatActivity {
     View itemView;
     String meridian = "am";
 
-    String intentAddress = "Gumitna, Pinalagdan, Paombong, Bulacan";
+    String intentAddress = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -297,6 +297,10 @@ public class CreateOrder extends AppCompatActivity {
 
             ArrayList<OrderItem> orderList = collectOrderData();
 
+            final String finalService = selectedService;
+            final String finalTransfer = selectedTransfer;
+            final String finalClaiming = selectedClaiming;
+            final String finalPayment = selectedPayment;
 
             try {
                 double totalPrice = calculateTotalPrice();
@@ -311,23 +315,28 @@ public class CreateOrder extends AppCompatActivity {
 
                         // gawa ka nalang ng order na object tas yun yung ipasa sa review order dami eh hahahhahah
 
-//                Intent intent = new Intent(CreateOrder.this, NextActivity.class);
+                Intent intent = new Intent();
 //                intent.putExtra("firstname", "Jerson");
 //                intent.putExtra("lastname", "Valdez");
 //                intent.putExtra("email", "valdez@gmail.com");
 //                intent.putExtra("phone", "09123456789");
 //                intent.putExtra("address", address.getText().toString());
-//                intent.putExtra("typeOfService", selectedService);
-//                intent.putExtra("modeOfTransfer", selectedTransfer);
+//                intent.putExtra("typeOfService", finalService);
+//                intent.putExtra("modeOfTransfer", finalTransfer);
 //                intent.putExtra("transferDate", transferDate.getText().toString());
 //                intent.putExtra("transferTime", transferTime.getText().toString());
-//                intent.putExtra("modeOfClaiming", selectedClaiming);
-//                intent.putExtra("paymentMethod", selectedPayment);
+//                intent.putExtra("modeOfClaiming", finalClaiming);
+//                intent.putExtra("paymentMethod", finalPayment);
 //                intent.putExtra("additionalNotes", additionalNotes.getText().toString());
 //                intent.putExtra("totalPrice", formattedPrice);
 //                intent.putExtra("orderList", orderList);
-//                startActivity(intent);
-
+                Order newOrder = new Order(address.getText().toString(), orderList, finalService, finalTransfer, transferDate.getText().toString(), transferTime.getText().toString(), finalClaiming, finalPayment, additionalNotes.getText().toString(), formattedPrice);
+                intent.putExtra("order", newOrder);
+                setResult(RESULT_OK, intent);
+                // dapat forward punta neto papunta kay summary order
+                // tas after ng checkout lang magfinish
+                //TODO: ORDER SUMMARY
+                finish();
                         reviewOrder.setEnabled(true);
                         reviewOrder.setAlpha(1f);
                         reviewOrder.setText("Review Order Summary");

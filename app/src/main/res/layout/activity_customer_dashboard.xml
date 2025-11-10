@@ -247,6 +247,7 @@
                         android:layout_marginTop="5dp"
                         >
                         <TextView
+                            android:id="@+id/recent_order_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ORD-005"
@@ -266,6 +267,8 @@
                             />
                     </LinearLayout>
                     <TextView
+
+                        android:id="@+id/service_items"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -273,6 +276,8 @@
                         android:textColor="@color/secondary_font_color"
                         android:textSize="15sp" />
                     <TextView
+
+                        android:id="@+id/recent_order_dates"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -287,6 +292,7 @@
                         android:layout_gravity="end"
                         >
                         <TextView
+                            android:id="@+id/recent_order_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Php 55.00"
