@@ -1,6 +1,8 @@
 package com.example.labable_mobile;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +12,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class CustomerDashboard extends AppCompatActivity {
 
-    Order[] orders = new Order[]{
-            new Order("Paombong",
-            new OrderItem[]{new OrderItem("Brief", 5), new OrderItem("Pants" , 2)},
- "Wash", "Drop-off", "Bukas", "Pick-up", "Cash",
-      "May ipot yung iba"),
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +23,10 @@ public class CustomerDashboard extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void createOrder(View view){
+        Intent createOrder = new Intent(this, CreateOrder.class);
+        startActivityForResult(createOrder, 143);
     }
 }

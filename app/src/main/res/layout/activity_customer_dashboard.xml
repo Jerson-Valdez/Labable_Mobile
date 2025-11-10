@@ -50,10 +50,9 @@
                 android:background="@drawable/black_button"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:paddingLeft="45dp"
-                android:paddingRight="45dp"
+                android:onClick="createOrder"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="45dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 />

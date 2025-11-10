@@ -1,7 +1,6 @@
 package com.example.labable_mobile;
 
 import java.io.Serializable;
-// luh ai oh hahhahah
 // Implement Serializable so it can be passed in an Intent
 public class OrderItem implements Serializable {
     private String name;

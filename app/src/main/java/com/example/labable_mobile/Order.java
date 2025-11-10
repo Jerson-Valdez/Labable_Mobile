@@ -1,6 +1,9 @@
 package com.example.labable_mobile;
 import com.example.labable_mobile.OrderItem;
-public class Order {
+
+import java.io.Serializable;
+
+public class Order implements Serializable {
     public static int orderCount;
     private String orderId;
     private String address;
@@ -45,7 +48,7 @@ public class Order {
         return notes;
     }
 
-    public Order(String address, OrderItem[] orderItems, String serviceType, String transferMode, String transferDate, String claimMode, String paymentMethod, String notes) {
+    public Order(String address, OrderItem[] orderItems, String serviceType, String transferMode, String transferDate, String claimMode, String paymentMethod, String notes, double total) {
         this.address = address;
         this.orderItems = orderItems;
         this.serviceType = serviceType;
@@ -55,11 +58,8 @@ public class Order {
         this.paymentMethod = paymentMethod;
         this.notes = notes;
         this.orderId = "ORD-"+String.format(String.valueOf(++this.orderCount));
+        this.totalPrice = total;
     }
 
-    private double calculateTotal(){
-        //TODO: calculate
-        return 0;
-    }
 
 }

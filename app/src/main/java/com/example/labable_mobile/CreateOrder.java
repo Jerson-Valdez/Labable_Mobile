@@ -309,6 +309,8 @@ public class CreateOrder extends AppCompatActivity {
                 new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
                     try {
 
+                        // gawa ka nalang ng order na object tas yun yung ipasa sa review order dami eh hahahhahah
+
 //                Intent intent = new Intent(CreateOrder.this, NextActivity.class);
 //                intent.putExtra("firstname", "Jerson");
 //                intent.putExtra("lastname", "Valdez");
