@@ -20,6 +20,11 @@
             android:exported="true">
 
         </activity>
+        <activity android:name=".OrderSummary"
+            android:exported="false">
+
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
