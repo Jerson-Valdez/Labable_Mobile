@@ -1,5 +1,8 @@
 package com.example.labable_mobile;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import android.app.Activity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -35,6 +38,7 @@ import java.util.Locale;
 
 public class CreateOrder extends AppCompatActivity {
 
+    ActivityResultLauncher<Intent> summaryActivityLauncher;
     EditText address, additionalNotes;
     Spinner washableItems;
     Button addToCartButton, reviewOrder, back;
@@ -60,6 +64,18 @@ public class CreateOrder extends AppCompatActivity {
             return insets;
         });
 
+        summaryActivityLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+
+                        setResult(Activity.RESULT_OK, data);
+
+                        finish();
+                    }
+
+                });
         initialize();
         addToCart();
         transferDate();
@@ -315,7 +331,7 @@ public class CreateOrder extends AppCompatActivity {
 
                         // gawa ka nalang ng order na object tas yun yung ipasa sa review order dami eh hahahhahah
 
-                Intent intent = new Intent();
+                Intent intent = new Intent(this, OrderSummary.class);
 //                intent.putExtra("firstname", "Jerson");
 //                intent.putExtra("lastname", "Valdez");
 //                intent.putExtra("email", "valdez@gmail.com");
@@ -332,11 +348,13 @@ public class CreateOrder extends AppCompatActivity {
 //                intent.putExtra("orderList", orderList);
                 Order newOrder = new Order(address.getText().toString(), orderList, finalService, finalTransfer, transferDate.getText().toString(), transferTime.getText().toString(), finalClaiming, finalPayment, additionalNotes.getText().toString(), formattedPrice);
                 intent.putExtra("order", newOrder);
-                setResult(RESULT_OK, intent);
+
+                summaryActivityLauncher.launch(intent);
+//                setResult(RESULT_OK, intent);
                 // dapat forward punta neto papunta kay summary order
                 // tas after ng checkout lang magfinish
                 //TODO: ORDER SUMMARY
-                finish();
+//                finish();
                         reviewOrder.setEnabled(true);
                         reviewOrder.setAlpha(1f);
                         reviewOrder.setText("Review Order Summary");
