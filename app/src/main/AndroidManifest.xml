@@ -24,6 +24,10 @@
             android:exported="false">
 
         </activity>
+        <activity android:name=".OrderView"
+            android:exported="false">
+
+        </activity>
 
         <activity
             android:name=".MainActivity"

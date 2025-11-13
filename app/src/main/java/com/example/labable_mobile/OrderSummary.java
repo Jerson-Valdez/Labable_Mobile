@@ -16,6 +16,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.HashMap;
+
 public class OrderSummary extends AppCompatActivity {
 
     Order order;
@@ -25,11 +27,20 @@ public class OrderSummary extends AppCompatActivity {
     LinearLayout orderItems;
     Button checkoutbtn, backbtn;
 
+    HashMap<String, Object> account = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order_summary);
+
+        Bundle extras = getIntent().getExtras();
+        account = (HashMap<String, Object>) extras.get("account");
+
+        TextView profileHeader = findViewById(R.id.userFullName);
+        profileHeader.setText(String.valueOf(account.get("name")));
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -81,7 +92,7 @@ public class OrderSummary extends AppCompatActivity {
             summaryNotes.setText("No additional notes.");
         }
 
-        costSummary.setText("Estimated Cost: Php " + order.getTotalPrice());
+        costSummary.setText("Estimated Cost: Php " + String.format("%,.2f", order.getTotalPrice()));
 
         orderItems.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -105,7 +116,13 @@ public class OrderSummary extends AppCompatActivity {
 
         checkoutbtn.setOnClickListener(v -> {
             Intent resultIntent = new Intent();
-            resultIntent.putExtra("order", order);
+
+            HashMap<String, Object> orders = (HashMap<String, Object>) account.get("orders");
+            orders.put("ORD-" + orders.size() + 1, order);
+
+            account.replace("orders", orders);
+            resultIntent.putExtra("account", account);
+
             setResult(Activity.RESULT_OK, resultIntent);
             finish();
         });
