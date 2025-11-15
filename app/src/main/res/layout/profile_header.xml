@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="horizontal"
-	android:paddingVertical="5dp"
-	android:paddingHorizontal="5dp"
-	android:gravity="center_vertical"
-	android:background="@drawable/custom_shape">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="5dp"
+    android:paddingHorizontal="5dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/custom_shape">
 
 	<!-- Back button -->
 	<ImageButton
@@ -21,10 +20,10 @@
 
 	<!-- Full name -->
 	<TextView
-		android:id="@+id/fullname"
+		android:id="@+id/userFullName"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Jerson Valdez"
+		android:text=""
 		android:textSize="18sp"
 		android:textColor="@android:color/black"
 		android:textStyle="bold"/>

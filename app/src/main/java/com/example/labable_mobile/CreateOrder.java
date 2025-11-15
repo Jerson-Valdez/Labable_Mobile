@@ -33,11 +33,11 @@ import androidx.core.view.WindowInsetsCompat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class CreateOrder extends AppCompatActivity {
-
     ActivityResultLauncher<Intent> summaryActivityLauncher;
     EditText address, additionalNotes;
     Spinner washableItems;
@@ -48,16 +48,24 @@ public class CreateOrder extends AppCompatActivity {
     List<WashableItem> washableItemsList = new ArrayList<>();
     double superbService, goodService, budgetService, studentPackService, dryCleaningService, superbThickService;
     LayoutInflater inflater;
-    View itemView;
     String meridian = "am";
 
     String intentAddress = "";
+
+    private HashMap<String, Object> account = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_create_order);
+
+        Bundle extras = getIntent().getExtras();
+        account = (HashMap<String, Object>) extras.get("account");
+
+        TextView profileHeader = findViewById(R.id.userFullName);
+        profileHeader.setText(String.valueOf(account.get("name")));
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -320,55 +328,30 @@ public class CreateOrder extends AppCompatActivity {
 
             try {
                 double totalPrice = calculateTotalPrice();
-                String formattedPrice = String.format("%.2f", totalPrice);
 
                 reviewOrder.setEnabled(false);
                 reviewOrder.setAlpha(0.5f);
                 reviewOrder.setText("Setting up your order...");
 
-                new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
-                    try {
+                try {
+                    Intent intent = new Intent(this, OrderSummary.class);
+                    Order newOrder = new Order(address.getText().toString(), orderList, finalService, finalTransfer, transferDate.getText().toString(), transferTime.getText().toString(), finalClaiming, finalPayment, additionalNotes.getText().toString(), totalPrice);
 
-                        // gawa ka nalang ng order na object tas yun yung ipasa sa review order dami eh hahahhahah
+                    intent.putExtra("account", account);
+                    intent.putExtra("order", newOrder);
 
-                Intent intent = new Intent(this, OrderSummary.class);
-//                intent.putExtra("firstname", "Jerson");
-//                intent.putExtra("lastname", "Valdez");
-//                intent.putExtra("email", "valdez@gmail.com");
-//                intent.putExtra("phone", "09123456789");
-//                intent.putExtra("address", address.getText().toString());
-//                intent.putExtra("typeOfService", finalService);
-//                intent.putExtra("modeOfTransfer", finalTransfer);
-//                intent.putExtra("transferDate", transferDate.getText().toString());
-//                intent.putExtra("transferTime", transferTime.getText().toString());
-//                intent.putExtra("modeOfClaiming", finalClaiming);
-//                intent.putExtra("paymentMethod", finalPayment);
-//                intent.putExtra("additionalNotes", additionalNotes.getText().toString());
-//                intent.putExtra("totalPrice", formattedPrice);
-//                intent.putExtra("orderList", orderList);
-                Order newOrder = new Order(address.getText().toString(), orderList, finalService, finalTransfer, transferDate.getText().toString(), transferTime.getText().toString(), finalClaiming, finalPayment, additionalNotes.getText().toString(), formattedPrice);
-                intent.putExtra("order", newOrder);
+                    summaryActivityLauncher.launch(intent);
+                    reviewOrder.setEnabled(true);
+                    reviewOrder.setAlpha(1f);
+                    reviewOrder.setText("Review Order Summary");
+                } catch (Exception e) {
+                    Toast.makeText(this, "Error calculating price.", Toast.LENGTH_SHORT).show();
+                    Log.e("CreateOrder", "Could not calculate price", e);
 
-                summaryActivityLauncher.launch(intent);
-//                setResult(RESULT_OK, intent);
-                // dapat forward punta neto papunta kay summary order
-                // tas after ng checkout lang magfinish
-                //TODO: ORDER SUMMARY
-//                finish();
-                        reviewOrder.setEnabled(true);
-                        reviewOrder.setAlpha(1f);
-                        reviewOrder.setText("Review Order Summary");
-
-                    } catch (Exception e) {
-                        Toast.makeText(this, "Error calculating price.", Toast.LENGTH_SHORT).show();
-                        Log.e("CreateOrder", "Could not calculate price", e);
-
-                        reviewOrder.setEnabled(true);
-                        reviewOrder.setAlpha(1f);
-                        reviewOrder.setText("Review Order Summary");
-                    }
-                }, 2000);
-
+                    reviewOrder.setEnabled(true);
+                    reviewOrder.setAlpha(1f);
+                    reviewOrder.setText("Review Order Summary");
+                }
             } catch (Exception e) {
                 Toast.makeText(this, "Error calculating price.", Toast.LENGTH_SHORT).show();
                 Log.e("CreateOrder", "Could not calculate price", e);
@@ -410,8 +393,8 @@ public class CreateOrder extends AppCompatActivity {
 
     private void update(){
         double total = calculateTotalPrice();
-        String formattedPrice = String.format("%.2f", total);
-        cost.setText("Estimated Cost: Php" + formattedPrice);
+        String formattedPrice = String.format("%,.2f", total);
+        cost.setText("Estimated Cost: Php " + formattedPrice);
     }
 
     private void updateEstimatedCost(){
@@ -419,7 +402,6 @@ public class CreateOrder extends AppCompatActivity {
             update();
         });
     }
-
 
     private double getSelectedServicePrice() {
         int selectedId = serviceGroup.getCheckedRadioButtonId();

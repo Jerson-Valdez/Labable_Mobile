@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CustomerDashboard">
+    tools:context=".CustomerDashboard"
+    android:background="@color/white">
     <include
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -43,14 +44,13 @@
                 android:textColor="@color/secondary_font_color"
                 android:textSize="18dp" />
             <Button
-                android:id="@+id/reviewOrder"
+                android:id="@+id/dashboardCreateOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+ New Order"
                 android:background="@drawable/black_button"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:onClick="createOrder"
                 android:paddingVertical="20dp"
                 android:paddingHorizontal="45dp"
                 android:layout_marginTop="10dp"
@@ -88,9 +88,10 @@
                         android:layout_weight="1"/>
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/dashboardActiveOrders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"
+                    android:text=""
                     android:textSize="25dp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
@@ -134,9 +135,10 @@
                         android:layout_weight="1"/>
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/dashboardCompletedOrders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3"
+                    android:text=""
                     android:textSize="25dp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
@@ -180,9 +182,10 @@
                         android:layout_weight="1"/>
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/dashboardTotalSpent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Php 289.00"
+                    android:text="Php "
                     android:textSize="25dp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
@@ -195,6 +198,7 @@
                     android:textSize="18dp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/dashboardOrderContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -219,95 +223,8 @@
                     android:gravity="left"
                     android:text="Track and manage your laundry orders"
                     android:textColor="@color/secondary_font_color"
-                    android:textSize="18dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/custom_shape"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingHorizontal="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    >
-                    <ImageView
-                        android:id="@+id/package_image"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/order_vector1"
-                        android:background="@drawable/gray_circle"
-                        android:padding="12dp"
-                        android:layout_gravity="center"
-                        />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="5dp"
-                        >
-                        <TextView
-                            android:id="@+id/recent_order_id"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ORD-005"
-                            android:textSize="20dp"
-                            android:textColor="@color/black"
-                            android:layout_marginRight="10dp"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="left"
-                            android:text="Pending"
-                            android:textColor="@color/yellow_dark"
-                            android:background="@drawable/rounded_yellow"
-                            android:textSize="18dp"
-                            android:paddingHorizontal="10dp"
-                            android:paddingVertical="5dp"
-                            />
-                    </LinearLayout>
-                    <TextView
-
-                        android:id="@+id/service_items"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="Wash &amp; Fold • 15 items"
-                        android:textColor="@color/secondary_font_color"
-                        android:textSize="15sp" />
-                    <TextView
-
-                        android:id="@+id/recent_order_dates"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="Ordered: 10/15/2024 • Delivery: 10/17/2024"
-                        android:textColor="@color/secondary_font_color"
-                        android:textSize="15sp" />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="end"
-                        >
-                        <TextView
-                            android:id="@+id/recent_order_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Php 55.00"
-                            android:textSize="20dp"
-                            android:textColor="@color/black"
-                            android:layout_marginRight="10dp"/>
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="View Details"
-                            android:paddingHorizontal="27dp"
-                            android:paddingVertical="10dp"
-                            android:background="@drawable/custom_shape"/>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:textSize="18dp"
+                    android:layout_marginBottom="15dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

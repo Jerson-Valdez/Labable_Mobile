@@ -1,5 +1,4 @@
 package com.example.labable_mobile;
-import com.example.labable_mobile.OrderItem;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,6 +6,7 @@ import java.util.ArrayList;
 public class Order implements Serializable {
     public static int orderCount;
     private String orderId;
+    private String status;
     private String address;
     private ArrayList<OrderItem> orderItems;
     private String serviceType;
@@ -16,11 +16,13 @@ public class Order implements Serializable {
     private String claimMode;
     private String paymentMethod;
     private String notes;
-    private String totalPrice;
+    private double totalPrice;
 
     public String getAddress() {
         return address;
     }
+
+    public String getStatus() { return status; };
 
     public ArrayList<OrderItem> getOrderItems() {
         return orderItems;
@@ -57,11 +59,12 @@ public class Order implements Serializable {
         return orderId;
     }
 
-    public String getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public Order(String address, ArrayList<OrderItem> orderItems, String serviceType, String transferMode, String transferDate, String transferTime, String claimMode, String paymentMethod, String notes, String total) {
+    public Order(String address, ArrayList<OrderItem> orderItems, String serviceType, String transferMode, String transferDate, String transferTime, String claimMode, String paymentMethod, String notes, double total) {
+        this.status = "Pending";
         this.address = address;
         this.orderItems = orderItems;
         this.serviceType = serviceType;
@@ -74,6 +77,5 @@ public class Order implements Serializable {
         this.orderId = "ORD-"+String.format(String.valueOf(++this.orderCount));
         this.totalPrice = total;
     }
-
 
 }
