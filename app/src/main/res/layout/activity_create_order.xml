@@ -1,6 +1,4 @@
-
-
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -8,29 +6,14 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	tools:context=".CreateOrder"
-	android:background="@color/white">
-
-	<!-- Include header -->
-	<include
-		android:id="@+id/header"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		layout="@layout/profile_header"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toEndOf="parent" />
-
-	<!-- Content below header -->
+	android:background="@color/white"
+    android:orientation="vertical">
 
 	<ScrollView
-		android:layout_width="0dp"
-		android:layout_height="0dp"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="1.0"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/header"
-		app:layout_constraintVertical_bias="1.0">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
 		<LinearLayout
 			android:id="@+id/createOrderContent"
 			android:layout_width="match_parent"
@@ -38,97 +21,87 @@
 			android:orientation="vertical"
 			android:padding="10dp">
 
-			<!-- Title -->
 			<TextView
 				android:id="@+id/title_text"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="8dp"
-				android:gravity="center"
 				android:text="Create Your Order"
 				android:textColor="@color/black"
-				android:textSize="45dp"
-				android:textStyle="bold" />
+				android:fontFamily="@font/poppins_bold"
+				android:textSize="45sp"/>
 
-			<!-- Subtitle/description -->
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center"
 				android:text="Fill in the details below to schedule your laundry service"
 				android:textColor="@color/secondary_font_color"
-				android:textSize="18dp" />
+				android:fontFamily="@font/poppins_regular"
+				android:textSize="18sp"
+                android:layout_marginBottom="20dp"/>
 
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:background="@drawable/custom_shape"
+				android:background="@drawable/circle_shadow"
 				android:orientation="vertical"
-				android:padding="10dp">
+				android:padding="20dp">
 
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:text="Order Details"
 					android:textColor="@color/black"
-					android:textSize="20dp"
-					android:textStyle="bold" />
-
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp" />
+					android:fontFamily="@font/poppins_semibold"
+					android:textSize="20sp"
+					android:layout_marginBottom="30dp"/>
 
 				<LinearLayout
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content">
-
-					<ImageView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:src="@drawable/address_icon" />
+					android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp">
 
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/address_icon"
 						android:text="Address"
 						android:textColor="@color/black"
-						android:textSize="18dp"
-						android:textStyle="bold" />
+						android:fontFamily="@font/poppins_semibold"
+						android:textSize="18sp"
+						android:layout_marginBottom="5dp" />
+
+                    <EditText
+                        android:id="@+id/address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/form_field"
+                        android:padding="10dp"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"/>
 				</LinearLayout>
-
-				<EditText
-					android:id="@+id/address"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:background="@drawable/custom_shape"
-					android:hint="454, Gumitna, Pinalagdan, Paombong, Bulacan"
-					android:padding="10dp"
-					android:textSize="16dp"
-					android:textColor="@color/black"/>
-
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp" />
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="@drawable/custom_shape"
 					android:orientation="vertical"
-					android:padding="15dp">
+					android:layout_marginBottom="20dp">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="Select Washable Items"
 						android:textColor="@color/black"
-						android:textSize="18dp"
-						android:textStyle="bold" />
+						android:fontFamily="@font/poppins_semibold"
+						android:textSize="18sp"
+						android:layout_marginBottom="5dp" />
 
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:background="@drawable/custom_shape">
+						android:background="@drawable/form_field">
 
 						<Spinner
 							android:id="@+id/washableItems"
@@ -136,67 +109,104 @@
 							android:layout_height="match_parent"
 							android:layout_weight="1" />
 
-						<Button
+						<ImageButton
 							android:id="@+id/addToCartButton"
 							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:background="@drawable/black_button"
-							android:padding="10dp"
-							android:text="Add to cart"
-							android:textColor="@color/white"
-							android:backgroundTint="@color/black"/>
+							android:layout_height="match_parent"
+                            android:contentDescription="Add to Cart"
+                            android:src="@drawable/basket"
+                            android:background="@drawable/black_rounded"
+                            android:padding="10dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+							android:backgroundTint="@null"
+                            android:drawableTop="@drawable/basket"
+                            android:textAlignment="center"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_semibold"/>
 					</LinearLayout>
-
 				</LinearLayout>
-
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp" />
 
 				<LinearLayout
 					android:id="@+id/yourOrderSection"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="@drawable/custom_shape"
 					android:orientation="vertical"
-					android:padding="15dp">
+					android:layout_marginBottom="20dp">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="Your Order"
 						android:textColor="@color/black"
-						android:textSize="18dp"
-						android:textStyle="bold" />
+						android:textSize="18sp"
+						android:fontFamily="@font/poppins_semibold"
+						android:layout_marginBottom="5dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Item"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/secondary_font_color"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="Quantity"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/secondary_font_color"
+                            android:textSize="16sp"/>
+                    </LinearLayout>
 
 					<LinearLayout
 						android:id="@+id/orderListContainer"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginTop="10dp"
-						android:orientation="vertical" />
+						android:background="@drawable/custom_shape"
+						android:orientation="vertical"
+						android:padding="10dp">
 
+						<TextView
+                            android:id="@+id/noItemMessage"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="No items in cart"
+							android:layout_gravity="center"
+							android:textColor="@color/secondary_font_color"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"
+							android:layout_marginBottom="5dp" />
+					</LinearLayout>
 				</LinearLayout>
-
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp" />
 
 				<LinearLayout
 					android:id="@+id/typesOfService"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="@drawable/custom_shape"
 					android:orientation="vertical"
-					android:padding="15dp">
+                    android:layout_marginBottom="20dp">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="Type of Service"
 						android:textColor="@color/black"
-						android:textSize="18dp"
-						android:textStyle="bold" />
+						android:textSize="18sp"
+						android:fontFamily="@font/poppins_semibold"
+						android:layout_marginBottom="5dp" />
 
 					<RadioGroup
 						android:id="@+id/serviceGroup"
@@ -208,66 +218,73 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:text="Superb Service"
-							android:textColor="@color/black"/>
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 
 						<RadioButton
 							android:id="@+id/goodRadioButton"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:text="Good Service"
-							android:textColor="@color/black"/>
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 
 						<RadioButton
 							android:id="@+id/budgetRadioButton"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:text="Budget Service"
-							android:textColor="@color/black"/>
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 
 						<RadioButton
 							android:id="@+id/studentPackRadioButton"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:text="Student Pack Service"
-							android:textColor="@color/black"/>
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
+
 
 						<RadioButton
 							android:id="@+id/dryCleaningRadioButton"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:text="Dry Cleaning Service"
-							android:textColor="@color/black"/>
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 
 						<RadioButton
 							android:id="@+id/superbThickRadioButton"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:text="Superb-Thick Service"
-							android:textColor="@color/black"/>
-
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 					</RadioGroup>
 
 				</LinearLayout>
-
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp" />
 
 				<LinearLayout
 					android:id="@+id/transferMode"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="@drawable/custom_shape"
 					android:orientation="vertical"
-					android:padding="15dp">
+                    android:layout_marginBottom="20dp">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="Mode of Laundry Transfer"
+                        android:fontFamily="@font/poppins_semibold"
 						android:textColor="@color/black"
-						android:textSize="18dp"
-						android:textStyle="bold" />
+						android:textSize="18dp" />
 
 					<RadioGroup
 						android:id="@+id/transferGroup"
@@ -281,7 +298,9 @@
 							android:layout_height="wrap_content"
 							android:layout_weight="1"
 							android:text="Pickup"
-							android:textColor="@color/black"/>
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 
 						<RadioButton
 							android:id="@+id/transfer2"
@@ -289,22 +308,18 @@
 							android:layout_height="wrap_content"
 							android:layout_weight="1"
 							android:text="Deliver"
-							android:textColor="@color/black"/>
-
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 					</RadioGroup>
 
 				</LinearLayout>
 
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp"/>
-
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="@drawable/custom_shape"
 					android:orientation="vertical"
-					android:padding="15dp">
+                    android:layout_marginBottom="20dp">
 
 					<TextView
 						android:layout_width="wrap_content"
@@ -312,7 +327,8 @@
 						android:text="Laundry Transfer Date"
 						android:textColor="@color/black"
 						android:textSize="18dp"
-						android:textStyle="bold" />
+                        android:fontFamily="@font/poppins_semibold"
+                        android:layout_marginBottom="5dp"/>
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -324,95 +340,88 @@
 							android:layout_width="0dp"
 							android:layout_weight="1"
 							android:layout_height="wrap_content"
-							android:background="@drawable/custom_shape"
+							android:background="@drawable/form_field"
+                            android:layout_marginEnd="20dp"
 							android:padding="10dp"
 							android:gravity="center"
 							android:text="mm/dd/yyyy"
-							android:textColor="@color/black"/>
-
-						<Space
-							android:layout_width="5dp"
-							android:layout_height="0dp"/>
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 
 						<TextView
 							android:id="@+id/transferTime"
 							android:layout_width="0dp"
 							android:layout_weight="1"
 							android:layout_height="wrap_content"
-							android:background="@drawable/custom_shape"
+							android:background="@drawable/form_field"
 							android:padding="10dp"
 							android:gravity="center"
 							android:text="00:00am/pm"
-							android:textColor="@color/black"/>
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 					</LinearLayout>
 
 				</LinearLayout>
-
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp"/>
 
 				<LinearLayout
 					android:id="@+id/claimingMode"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="@drawable/custom_shape"
 					android:orientation="vertical"
-					android:padding="15dp">
+                    android:layout_marginBottom="20dp">
 
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:text="How would you like to receive your clean laundry?"
 						android:textColor="@color/black"
-						android:textSize="18dp"
-						android:textStyle="bold" />
+						android:textSize="18sp"
+						android:fontFamily="@font/poppins_semibold" />
 
-					<RadioGroup
-						android:id="@+id/claimingGroup"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:orientation="horizontal">
+                    <RadioGroup
+                        android:id="@+id/claimingGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="86dp"
+                        android:orientation="horizontal">
 
-						<RadioButton
-							android:id="@+id/claim1"
-							android:layout_width="0dp"
-							android:layout_height="wrap_content"
-							android:layout_weight="1"
-							android:text="Pickup"
-							android:textColor="@color/black"/>
+                        <RadioButton
+                            android:id="@+id/claim1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Pickup"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
-						<RadioButton
-							android:id="@+id/claim2"
-							android:layout_width="0dp"
-							android:layout_height="match_parent"
-							android:layout_weight="1"
-							android:text="Drop-Off (Deliver to your front door)"
-							android:textColor="@color/black"/>
-
-					</RadioGroup>
-
+                        <RadioButton
+                            android:id="@+id/claim2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Drop-Off (Deliver to your front door)"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </RadioGroup>
 				</LinearLayout>
-
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp"/>
 
 				<LinearLayout
 					android:id="@+id/payment"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="@drawable/custom_shape"
 					android:orientation="vertical"
-					android:padding="15dp">
+                    android:layout_marginBottom="20dp">
 
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:text="Payment Method"
 						android:textColor="@color/black"
-						android:textSize="18dp"
-						android:textStyle="bold" />
+						android:textSize="18sp"
+						android:fontFamily="@font/poppins_semibold" />
 
 					<RadioGroup
 						android:id="@+id/paymentGroup"
@@ -426,7 +435,9 @@
 							android:layout_height="wrap_content"
 							android:layout_weight="1"
 							android:text="Cash"
-							android:textColor="@color/black"/>
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 
 						<RadioButton
 							android:id="@+id/gcash"
@@ -434,88 +445,84 @@
 							android:layout_height="match_parent"
 							android:layout_weight="1"
 							android:text="GCash"
-							android:textColor="@color/black"/>
-
+							android:textColor="@color/black"
+							android:textSize="16sp"
+							android:fontFamily="@font/poppins_regular"/>
 					</RadioGroup>
 
 				</LinearLayout>
 
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp"/>
-
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="@drawable/custom_shape"
 					android:orientation="vertical"
-					android:padding="15dp">
+                    android:layout_marginBottom="20dp">
 
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:text="Additional Notes (Optional)"
 						android:textColor="@color/black"
-						android:textSize="18dp"
-						android:textStyle="bold" />
+						android:textSize="18sp"
+						android:fontFamily="@font/poppins_semibold" />
 
 					<EditText
 						android:id="@+id/additionalNotes"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:background="@drawable/custom_shape"
-						android:padding="10dp"
-						android:hint="Any special instructions ..."
-						android:textSize="16dp"
+						android:padding="15dp"
+						android:hint="Any special instructions"
+                        android:textColorHint="@color/secondary_font_color"
+						android:textSize="16sp"
+						android:fontFamily="@font/poppins_regular"
 						android:minHeight="100dp"
-						android:gravity="top|left"
+                        android:gravity="top"
 						android:textColor="@color/black"/>
-
 				</LinearLayout>
 
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp" >
+                    <TextView
+                        android:id="@+id/cost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estimated Cost: "
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:layout_marginBottom="10dp" />
 
-				<TextView
-					android:id="@+id/cost"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:text="Estimated Cost: "
-					android:textColor="@color/black"
-					android:textStyle="bold"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/reviewOrder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Review Order"
+                        android:textAllCaps="false"
+                        android:background="@drawable/black_rounded"
+						android:backgroundTint="@color/black"
+						android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:padding="20dp"
+                        android:layout_marginBottom="10dp" />
 
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp"/>
-
-				<Button
-					android:id="@+id/reviewOrder"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:text="Review Order"
-					android:background="@drawable/black_button"
-					android:textColor="@color/white"
-					android:textSize="18dp"
-					android:textStyle="bold"
-					android:padding="20dp"/>
-
-				<Space
-					android:layout_width="0dp"
-					android:layout_height="5dp"/>
-
-				<Button
-					android:id="@+id/back"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:text="Back"
-					android:background="@drawable/custom_shape"
-					android:textSize="18dp"
-					android:textStyle="bold"
-					android:padding="20dp"/>
-
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/back"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Back"
+                        android:textAllCaps="false"
+                        android:background="@drawable/outline_rounded"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:padding="20dp"/>
+                </LinearLayout>
 			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

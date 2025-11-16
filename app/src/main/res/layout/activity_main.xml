@@ -1,20 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/main"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+	tools:context=".MainActivity"
+    android:background="@color/white">
 
-	<Button
-		android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/black_logo"
+            android:contentDescription="Labable Logo"
+            android:layout_gravity="center_horizontal"
+
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laba"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/black"
+                android:textSize="34sp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ble"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/secondary_font_color"
+                android:textSize="34sp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <VideoView
+        android:id="@+id/advertisement"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="15dp"/>
+
+	<androidx.appcompat.widget.AppCompatButton
+        android:layout_marginHorizontal="50dp"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		android:text="Go to dashboard"
-		android:onClick="goToDashboard"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:background="@drawable/black_rounded"
+        android:fontFamily="@font/poppins_semibold"
+		android:text="Login"
+        android:textAllCaps="false"
+		android:onClick="goToLogin"
+        android:layout_marginBottom="15dp"
 		/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginHorizontal="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:background="@drawable/outline_rounded"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Signup"
+        android:textAllCaps="false"
+        android:onClick="goToRegister"
+        />
+</LinearLayout>

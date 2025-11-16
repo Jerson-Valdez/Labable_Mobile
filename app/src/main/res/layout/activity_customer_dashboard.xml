@@ -33,28 +33,32 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="left"
                 android:text="My Dashboard"
+                android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/black"
-                android:textSize="45dp"
-                android:textStyle="bold" />
+                android:textSize="45sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="Manage your laundry orders and track progress"
+                android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/secondary_font_color"
-                android:textSize="18dp" />
-            <Button
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp" />
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/dashboardCreateOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+ New Order"
-                android:background="@drawable/black_button"
+                android:background="@drawable/black_rounded"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:paddingVertical="20dp"
                 android:paddingHorizontal="45dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,8 +81,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Active Orders"
+                        android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="16sp"
                         android:layout_weight="9"/>
                     <ImageView
                         android:layout_width="0dp"
@@ -91,6 +96,7 @@
                     android:id="@+id/dashboardActiveOrders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text=""
                     android:textSize="25dp"
                     android:textColor="@color/black"
@@ -100,8 +106,9 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="Currently being processed"
+                    android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/secondary_font_color"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,8 +131,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Completed"
+                        android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="16sp"
                         android:layout_weight="9"/>
                     <ImageView
                         android:layout_width="0dp"
@@ -138,6 +146,7 @@
                     android:id="@+id/dashboardCompletedOrders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
                     android:text=""
                     android:textSize="25dp"
                     android:textColor="@color/black"
@@ -147,8 +156,9 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="Total completed orders"
+                    android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/secondary_font_color"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -171,8 +181,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Total Spent"
+                        android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="16sp"
                         android:layout_weight="9"/>
                     <ImageView
                         android:layout_width="0dp"
@@ -186,6 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Php "
+                    android:fontFamily="@font/poppins_semibold"
                     android:textSize="25dp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
@@ -194,11 +206,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="All time spending"
+                    android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/secondary_font_color"
-                    android:textSize="18dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/dashboardOrderContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -214,6 +226,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Recent Orders"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textSize="25dp"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
@@ -222,9 +235,18 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="Track and manage your laundry orders"
+                    android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/secondary_font_color"
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:layout_marginBottom="15dp"/>
+
+                <LinearLayout
+                    android:id="@+id/dashboardOrderContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

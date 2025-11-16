@@ -6,19 +6,18 @@
     android:paddingVertical="5dp"
     android:paddingHorizontal="5dp"
     android:gravity="center_vertical"
-    android:background="@drawable/custom_shape">
+    android:background="@drawable/header">
 
-	<!-- Back button -->
 	<ImageButton
+		android:id="@+id/profileButton"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:src="@drawable/account_circle"
 		android:background="@android:color/transparent"
-		android:contentDescription="Back button"
+		android:contentDescription="Profile button"
 		android:scaleType="centerInside"
 		android:padding="8dp" />
 
-	<!-- Full name -->
 	<TextView
 		android:id="@+id/userFullName"
 		android:layout_width="wrap_content"

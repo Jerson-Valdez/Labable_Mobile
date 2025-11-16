@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -13,22 +12,22 @@
         android:theme="@style/Theme.Labable_Mobile">
         <activity
             android:name=".CustomerDashboard"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".CreateOrder"
-            android:exported="true">
-
-        </activity>
-        <activity android:name=".OrderSummary"
-            android:exported="false">
-
-        </activity>
-        <activity android:name=".OrderView"
-            android:exported="false">
-
-        </activity>
-
+            android:exported="true"></activity>
+        <activity
+            android:name=".OrderSummary"
+            android:exported="false"></activity>
+        <activity
+            android:name=".OrderView"
+            android:exported="false"></activity>
+        <activity
+            android:name=".Login"
+            android:exported="false"></activity>
+        <activity
+            android:name=".Register"
+            android:exported="false"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

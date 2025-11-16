@@ -2,6 +2,8 @@ package com.example.labable_mobile;
 
 import static android.view.View.TEXT_ALIGNMENT_CENTER;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -18,9 +20,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.HashMap;
-
 public class OrderView extends AppCompatActivity {
+    private AccountManager accountManager;
+    private Account account;
+    private Order order;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,22 +31,18 @@ public class OrderView extends AppCompatActivity {
         setContentView(R.layout.activity_order_view);
 
         Bundle extras = getIntent().getExtras();
-        HashMap<String, HashMap<String, Object>> account = (HashMap<String, HashMap<String, Object>>) extras.get("account");
+        accountManager = (AccountManager) extras.get("accountManager");
+        account = accountManager.getLoggedInAccount();
 
-        TextView profileHeader = findViewById(R.id.userFullName);
-        profileHeader.setText(String.valueOf(account.get("name")));
-
-        Order order = (Order) extras.get("order");
+        order = (Order) extras.get("order");
 
         TextView price = findViewById(R.id.orderViewPrice);
         price.setText("Php " + String.format("%,.2f", order.getTotalPrice()));
 
         TextView status = findViewById(R.id.orderViewStatus);
         status.setText(order.getStatus());
-        status.setTextColor(ContextCompat.getColor(this, R.color.yellow_dark));
-        status.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_yellow));
-        status.setTypeface(ResourcesCompat.getFont(this, R.font.poppins_semibold));
-        status.setPadding(MainActivity.dpToPx(this, 10), MainActivity.dpToPx(this, 5), MainActivity.dpToPx(this, 10) , MainActivity.dpToPx(this, 5));
+        status.setTextColor(ContextCompat.getColor(this, order.getStatus().equalsIgnoreCase("pending") ? R.color.yellow_dark : R.color.red_dark));
+        status.setBackground(ContextCompat.getDrawable(this, order.getStatus().equalsIgnoreCase("pending") ? R.drawable.rounded_yellow : R.drawable.rounded_red));
 
         TextView address = findViewById(R.id.orderViewAddress);
         address.setText(order.getAddress());
@@ -66,11 +65,52 @@ public class OrderView extends AppCompatActivity {
         transferMode.setText(order.getTransferMode());
 
         TextView notes = findViewById(R.id.orderViewNotes);
-        notes.setText(order.getNotes());
+        if (order.getNotes() != null && !order.getNotes().isEmpty()) {
+            notes.setText(order.getNotes());
+        } else {
+            notes.setText("No additional notes.");
+        }
+
+        LinearLayout buttonContainer = findViewById(R.id.bottom_bar);
+
+        Button cancelBtn = findViewById(R.id.orderViewCancelBtn);
+
+        if (order.getStatus().equalsIgnoreCase("canceled")) {
+            buttonContainer.removeView(cancelBtn);
+        } else {
+            cancelBtn.setOnClickListener(v -> {
+            if (!order.getStatus().equalsIgnoreCase("pending")) {
+                new AlertDialog.Builder(this)
+                        .setTitle("Failed to Cancel Order")
+                        .setMessage("This order is already being processed.")
+                        .setNegativeButton("Close", null)
+                        .show();
+                return;
+            }
+            new AlertDialog.Builder(this)
+                    .setTitle("Cancel Order")
+                    .setMessage("You are about to cancel this order. Are you sure you want to proceed?")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Confirm", (dialog, which) -> {
+                        order.setStatus("Canceled");
+                        status.setTextColor(ContextCompat.getColor(this, order.getStatus().equalsIgnoreCase("pending") ? R.color.yellow_dark : R.color.red_dark));
+                        status.setBackground(ContextCompat.getDrawable(this, order.getStatus().equalsIgnoreCase("pending") ? R.drawable.rounded_yellow : R.drawable.rounded_red));
+                        accountManager.updateAccountOrder(order);
+                        status.setText(order.getStatus());
+
+                        new AlertDialog.Builder(this)
+                                .setTitle("Order Canceled")
+                                .setMessage("This order has been canceled.")
+                                .setNegativeButton("Close", null)
+                                .show();
+                    })
+                    .show();
+        });
+        }
 
         Button backBtn = findViewById(R.id.orderViewBackBtn);
         backBtn.setOnClickListener(v -> {
-            finish();
+            finishWithResult();
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -78,6 +118,19 @@ public class OrderView extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void finishWithResult() {
+        Intent res = new Intent();
+        res.putExtra("order", order);
+        res.putExtra("accountManager", accountManager);
+        setResult(-1, res);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishWithResult();
     }
 
     private void listOrderItems(Order order) {
@@ -98,7 +151,7 @@ public class OrderView extends AppCompatActivity {
             itemName.setLayoutParams(itemParams);
             itemName.setText(orderItem.getName());
             itemName.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-            itemName.setTextColor(ContextCompat.getColor(this, R.color.secondary_font_color));
+            itemName.setTextColor(ContextCompat.getColor(this, R.color.black));
             itemName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             itemName.setTypeface(ResourcesCompat.getFont(this, R.font.poppins_regular));
 
@@ -106,7 +159,7 @@ public class OrderView extends AppCompatActivity {
             itemQuantity.setLayoutParams(itemParams);
             itemQuantity.setText("×" + orderItem.getQuantity());
             itemQuantity.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-            itemQuantity.setTextColor(ContextCompat.getColor(this, R.color.secondary_font_color));
+            itemQuantity.setTextColor(ContextCompat.getColor(this, R.color.black));
             itemQuantity.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             itemQuantity.setTypeface(ResourcesCompat.getFont(this, R.font.poppins_regular));
 

@@ -1,10 +1,6 @@
 package com.example.labable_mobile;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import android.app.Activity;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -21,27 +17,24 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast; // <-- NEEDED for showing the price
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class CreateOrder extends AppCompatActivity {
-    ActivityResultLauncher<Intent> summaryActivityLauncher;
     EditText address, additionalNotes;
     Spinner washableItems;
-    Button addToCartButton, reviewOrder, back;
+
+    ImageButton addToCartButton;
+    Button reviewOrder, back;
     LinearLayout orderListContainer;
     RadioGroup serviceGroup, transferGroup, claimingGroup, paymentGroup;
     TextView transferDate, transferTime, cost ;
@@ -50,9 +43,8 @@ public class CreateOrder extends AppCompatActivity {
     LayoutInflater inflater;
     String meridian = "am";
 
-    String intentAddress = "";
-
-    private HashMap<String, Object> account = null;
+    private AccountManager accountManager;
+    private Account account = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,30 +52,9 @@ public class CreateOrder extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_create_order);
 
-        Bundle extras = getIntent().getExtras();
-        account = (HashMap<String, Object>) extras.get("account");
+        accountManager = (AccountManager) getIntent().getExtras().getSerializable("accountManager");
+        account = accountManager.getLoggedInAccount();
 
-        TextView profileHeader = findViewById(R.id.userFullName);
-        profileHeader.setText(String.valueOf(account.get("name")));
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-        summaryActivityLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-
-                        setResult(Activity.RESULT_OK, data);
-
-                        finish();
-                    }
-
-                });
         initialize();
         addToCart();
         transferDate();
@@ -91,6 +62,12 @@ public class CreateOrder extends AppCompatActivity {
         updateEstimatedCost();
         setupReviewOrderButton();
         back();
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
     }
 
     @SuppressLint("WrongViewCast")
@@ -110,9 +87,7 @@ public class CreateOrder extends AppCompatActivity {
         transferTime = findViewById(R.id.transferTime);
         cost = findViewById(R.id.cost);
 
-        if (intentAddress != null && !intentAddress.toString().trim().isEmpty()) {
-            address.setText(intentAddress);
-        }
+        address.setText(account.getAddress());
 
         // Prices
         superbService = 180.00;
@@ -140,7 +115,7 @@ public class CreateOrder extends AppCompatActivity {
 
         // Spinner Adapter
         ArrayAdapter<WashableItem> spinnerAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,
+                R.layout.spinner_item,
                 washableItemsList
         );
 
@@ -150,7 +125,6 @@ public class CreateOrder extends AppCompatActivity {
 
     private void addToCart() {
         addToCartButton.setOnClickListener(v -> {
-
             WashableItem selectedItem = (WashableItem) washableItems.getSelectedItem();
             addOrderItem(selectedItem);
             update();
@@ -158,9 +132,15 @@ public class CreateOrder extends AppCompatActivity {
     }
 
     private void addOrderItem(WashableItem item) {
+        View noItemMessage = findViewById(R.id.noItemMessage);
+
+        if (noItemMessage.getVisibility() == View.VISIBLE) {
+            noItemMessage.setVisibility(View.INVISIBLE);
+        }
+
         int childCount = orderListContainer.getChildCount();
 
-        for (int i = 0; i < childCount; i++) {
+        for (int i = 1; i < childCount; i++) {
             View itemView = orderListContainer.getChildAt(i);
             WashableItem existingItem = (WashableItem) itemView.getTag();
             if (item.getName().equals(existingItem.getName())) {
@@ -178,7 +158,7 @@ public class CreateOrder extends AppCompatActivity {
         View itemView = inflater.inflate(R.layout.item_order, orderListContainer, false);
 
         TextView itemNameText = itemView.findViewById(R.id.item_name);
-        Button btnRemove = itemView.findViewById(R.id.btn_delete);
+        ImageButton btnRemove = itemView.findViewById(R.id.btn_delete);
         ImageButton btnAdd = itemView.findViewById(R.id.btn_add);
         ImageButton btnSubtract = itemView.findViewById(R.id.btn_subtract);
         EditText quantity = itemView.findViewById(R.id.quantity);
@@ -200,7 +180,12 @@ public class CreateOrder extends AppCompatActivity {
             update();
             if (currentQuantity <= 0) {
                 orderListContainer.removeView(itemView);
+                if (noItemMessage.getVisibility() == View.INVISIBLE) {
+                    noItemMessage.setVisibility(View.VISIBLE);
+                }
                 update();
+
+
             }else {
                 quantity.setText(String.valueOf(currentQuantity));
                 update();
@@ -209,6 +194,9 @@ public class CreateOrder extends AppCompatActivity {
 
         btnRemove.setOnClickListener(v -> {
             orderListContainer.removeView(itemView);
+            if (noItemMessage.getVisibility() == View.INVISIBLE) {
+                noItemMessage.setVisibility(View.VISIBLE);
+            }
             update();
         });
 
@@ -287,9 +275,9 @@ public class CreateOrder extends AppCompatActivity {
             }
 
             String selectedService = "";
-            String selectedTransfer = "";
-            String selectedClaiming = "";
-            String selectedPayment = "";
+            String selectedTransfer;
+            String selectedClaiming;
+            String selectedPayment;
 
             int selectedServiceId = serviceGroup.getCheckedRadioButtonId();
             int numItems = serviceGroup.getChildCount();
@@ -328,29 +316,16 @@ public class CreateOrder extends AppCompatActivity {
 
             try {
                 double totalPrice = calculateTotalPrice();
-
-                reviewOrder.setEnabled(false);
-                reviewOrder.setAlpha(0.5f);
-                reviewOrder.setText("Setting up your order...");
-
                 try {
                     Intent intent = new Intent(this, OrderSummary.class);
-                    Order newOrder = new Order(address.getText().toString(), orderList, finalService, finalTransfer, transferDate.getText().toString(), transferTime.getText().toString(), finalClaiming, finalPayment, additionalNotes.getText().toString(), totalPrice);
+                    Order newOrder = new Order("ORD-"+ (account.getOrders().size() + 1), address.getText().toString(), orderList, finalService, finalTransfer, transferDate.getText().toString(), transferTime.getText().toString(), finalClaiming, finalPayment, additionalNotes.getText().toString(), totalPrice);
 
-                    intent.putExtra("account", account);
+                    intent.putExtra("accountManager", accountManager);
                     intent.putExtra("order", newOrder);
-
-                    summaryActivityLauncher.launch(intent);
-                    reviewOrder.setEnabled(true);
-                    reviewOrder.setAlpha(1f);
-                    reviewOrder.setText("Review Order Summary");
+                    startActivity(intent);
                 } catch (Exception e) {
                     Toast.makeText(this, "Error calculating price.", Toast.LENGTH_SHORT).show();
                     Log.e("CreateOrder", "Could not calculate price", e);
-
-                    reviewOrder.setEnabled(true);
-                    reviewOrder.setAlpha(1f);
-                    reviewOrder.setText("Review Order Summary");
                 }
             } catch (Exception e) {
                 Toast.makeText(this, "Error calculating price.", Toast.LENGTH_SHORT).show();
@@ -363,7 +338,7 @@ public class CreateOrder extends AppCompatActivity {
         ArrayList<OrderItem> list = new ArrayList<>();
         int childCount = orderListContainer.getChildCount();
 
-        for (int i = 0; i < childCount; i++) {
+        for (int i = 1; i < childCount; i++) {
             View itemView = orderListContainer.getChildAt(i);
 
             WashableItem item = (WashableItem) itemView.getTag();
@@ -425,7 +400,7 @@ public class CreateOrder extends AppCompatActivity {
 
     private double calculateTotalPrice() {
         int count = orderListContainer.getChildCount();
-        if (count == 0){
+        if (count == 1){
             return 0.0;
         }
 
@@ -437,12 +412,12 @@ public class CreateOrder extends AppCompatActivity {
         double totalWeight = 0.0;
         int childCount = orderListContainer.getChildCount();
 
-        if (childCount == 0){
+        if (childCount == 1){
             Toast.makeText(this, "Please add items to your order", Toast.LENGTH_SHORT).show();
             return 0.0;
         }
 
-        for (int i = 0; i < childCount; i++) {
+        for (int i = 1; i < childCount; i++) {
             View itemView = orderListContainer.getChildAt(i);
 
             WashableItem item = (WashableItem) itemView.getTag();

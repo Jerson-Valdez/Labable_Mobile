@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -19,15 +20,14 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.HashMap;
 
 public class OrderSummary extends AppCompatActivity {
-
     Order order;
     TextView summaryAddress, summaryTransferDateTime, summaryServiceType,
             summaryPaymentMethod, summaryClaimMode, summaryTransferMode,
             summaryNotes, costSummary;
     LinearLayout orderItems;
     Button checkoutbtn, backbtn;
-
-    HashMap<String, Object> account = null;
+    AccountManager accountManager;
+    Account account = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,8 @@ public class OrderSummary extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order_summary);
 
-        Bundle extras = getIntent().getExtras();
-        account = (HashMap<String, Object>) extras.get("account");
-
-        TextView profileHeader = findViewById(R.id.userFullName);
-        profileHeader.setText(String.valueOf(account.get("name")));
+        accountManager = (AccountManager) getIntent().getExtras().getSerializable("accountManager");
+        account = accountManager.getLoggedInAccount();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -102,7 +99,7 @@ public class OrderSummary extends AppCompatActivity {
             TextView itemQuantity = itemView.findViewById(R.id.item_quantity_summary);
 
             itemName.setText(item.getName());
-            itemQuantity.setText(String.valueOf(item.getQuantity()));
+            itemQuantity.setText("×" + item.getQuantity());
 
             orderItems.addView(itemView);
         }
@@ -110,20 +107,20 @@ public class OrderSummary extends AppCompatActivity {
 
     private void setupButtonListeners() {
         backbtn.setOnClickListener(v -> {
-            setResult(Activity.RESULT_CANCELED);
             finish();
         });
 
         checkoutbtn.setOnClickListener(v -> {
-            Intent resultIntent = new Intent();
+            Intent intent = new Intent(this, CustomerDashboard.class);
+            HashMap<String, Order> orders = account.getOrders();
+            orders.put(order.getOrderId(), order);
 
-            HashMap<String, Object> orders = (HashMap<String, Object>) account.get("orders");
-            orders.put("ORD-" + orders.size() + 1, order);
+            account.setOrders(orders);
+            intent.putExtra("accountManager", accountManager);
 
-            account.replace("orders", orders);
-            resultIntent.putExtra("account", account);
-
-            setResult(Activity.RESULT_OK, resultIntent);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            
+            startActivity(intent);
             finish();
         });
     }

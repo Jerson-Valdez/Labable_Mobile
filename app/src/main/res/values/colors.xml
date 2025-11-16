@@ -5,7 +5,8 @@
 	<color name="transparent">#00FFFFFF</color>
 	<color name="secondary_font_color">#919191</color>
 	<color name="sf_light">#C1C1C1</color>
-	<color name="red">#EF4444</color>
+	<color name="red_dark">#EF4444</color>
+    <color name="red_light">#f58a8a</color>
 	<color name="yellow_dark">#EAB308</color>
 	<color name="yellow_light">#40EAB308</color>
 </resources>

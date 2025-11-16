@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Order implements Serializable {
-    public static int orderCount;
     private String orderId;
     private String status;
     private String address;
@@ -63,7 +62,11 @@ public class Order implements Serializable {
         return totalPrice;
     }
 
-    public Order(String address, ArrayList<OrderItem> orderItems, String serviceType, String transferMode, String transferDate, String transferTime, String claimMode, String paymentMethod, String notes, double total) {
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Order(String id, String address, ArrayList<OrderItem> orderItems, String serviceType, String transferMode, String transferDate, String transferTime, String claimMode, String paymentMethod, String notes, double total) {
         this.status = "Pending";
         this.address = address;
         this.orderItems = orderItems;
@@ -74,7 +77,7 @@ public class Order implements Serializable {
         this.claimMode = claimMode;
         this.paymentMethod = paymentMethod;
         this.notes = notes;
-        this.orderId = "ORD-"+String.format(String.valueOf(++this.orderCount));
+        this.orderId = id;
         this.totalPrice = total;
     }
 
