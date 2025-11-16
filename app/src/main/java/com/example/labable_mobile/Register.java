@@ -26,32 +26,25 @@ public class Register extends AppCompatActivity {
 
         accountManager = (AccountManager) getIntent().getExtras().getSerializable("accountManager");
 
-        LinearLayout firstNameContainer = findViewById(R.id.registerFirstNameContainer);
         EditText firstName = findViewById(R.id.registerFirstName);
-        LinearLayout lastNameContainer = findViewById(R.id.registerLastNameContainer);
         EditText lastName = findViewById(R.id.registerLastName);
-        LinearLayout emailContainer = findViewById(R.id.registerEmailContainer);
         EditText email = findViewById(R.id.registerEmail);
-        LinearLayout phoneContainer = findViewById(R.id.registerPhoneContainer);
         EditText phone = findViewById(R.id.registerPhone);
-        LinearLayout addressContainer = findViewById(R.id.registerAddressContainer);
         EditText address = findViewById(R.id.registerAddress);
-        LinearLayout passwordContainer = findViewById(R.id.registerPasswordContainer);
         EditText password = findViewById(R.id.registerPassword);
-        LinearLayout confirmPasswordContainer = findViewById(R.id.registerConfirmPasswordContainer);
         EditText confirmPassword = findViewById(R.id.registerConfirmPassword);
         CheckBox agreement = findViewById(R.id.registerTerms);
         Button registerBtn = findViewById(R.id.registerButton);
         LinearLayout googleBtn = findViewById(R.id.registerGoogleButton);
 
 
-        firstName.addTextChangedListener(Form.nameListener(firstNameContainer));
-        lastName.addTextChangedListener(Form.nameListener(lastNameContainer));
-        email.addTextChangedListener(Form.emailListener(false, accountManager, emailContainer));
-        phone.addTextChangedListener(Form.phoneListener(phoneContainer));
-        address.addTextChangedListener(Form.addressListener(addressContainer));
-        password.addTextChangedListener(Form.passwordListener(false, passwordContainer));
-        confirmPassword.addTextChangedListener(Form.confirmPasswordListener(confirmPasswordContainer, password));
+        firstName.addTextChangedListener(Form.nameListener(firstName));
+        lastName.addTextChangedListener(Form.nameListener(lastName));
+        email.addTextChangedListener(Form.emailListener(false, accountManager, email));
+        phone.addTextChangedListener(Form.phoneListener(phone));
+        address.addTextChangedListener(Form.addressListener(address));
+        password.addTextChangedListener(Form.passwordListener(false, password));
+        confirmPassword.addTextChangedListener(Form.confirmPasswordListener(confirmPassword, password));
         agreement.setOnClickListener(v -> {
             if (agreement.isChecked()) {
                 agreement.setButtonDrawable(R.drawable.check_vector);
@@ -59,27 +52,6 @@ public class Register extends AppCompatActivity {
                 agreement.setButtonDrawable(R.drawable.form_circle_field);
                 Form.registerFormValid = false;
             }
-        });
-        firstNameContainer.setOnClickListener(v -> {
-            firstName.requestFocus();
-        });
-        lastNameContainer.setOnClickListener(v -> {
-            lastName.requestFocus();
-        });
-        emailContainer.setOnClickListener(v -> {
-            email.requestFocus();
-        });
-        phoneContainer.setOnClickListener(v -> {
-            phone.requestFocus();
-        });
-        addressContainer.setOnClickListener(v -> {
-            address.requestFocus();
-        });
-        passwordContainer.setOnClickListener(v -> {
-            password.requestFocus();
-        });
-        confirmPasswordContainer.setOnClickListener(v -> {
-            confirmPassword.requestFocus();
         });
         registerBtn.setOnClickListener(v -> {
             if (!Form.registerFormValid || !agreement.isChecked()) {

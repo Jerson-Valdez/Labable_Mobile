@@ -28,29 +28,20 @@ public class Login extends AppCompatActivity {
 
         accountManager = (AccountManager) extras.getSerializable("accountManager");
 
-        LinearLayout emailContainer = findViewById(R.id.loginEmailContainer);
         EditText email = findViewById(R.id.loginEmail);
-        LinearLayout passwordContainer = findViewById(R.id.loginPasswordContainer);
         EditText password = findViewById(R.id.loginPassword);
         CheckBox rememberMe = findViewById(R.id.loginRemember);
         Button loginBtn = findViewById(R.id.loginButton);
         LinearLayout googleBtn = findViewById(R.id.loginGoogleButton);
 
-        email.addTextChangedListener(Form.emailListener(true, accountManager, emailContainer));
-        password.addTextChangedListener(Form.passwordListener(true, passwordContainer));
+        email.addTextChangedListener(Form.emailListener(true, accountManager, email));
+        password.addTextChangedListener(Form.passwordListener(true, password));
         rememberMe.setOnClickListener(v -> {
             if (rememberMe.isChecked()) {
                 rememberMe.setButtonDrawable(R.drawable.check_vector);
             } else {
                 rememberMe.setButtonDrawable(R.drawable.form_circle_field);
             }
-        });
-
-        emailContainer.setOnClickListener(v -> {
-            email.requestFocus();
-        });
-        passwordContainer.setOnClickListener(v -> {
-            password.requestFocus();
         });
 
         if (extras.get("email") != null) {

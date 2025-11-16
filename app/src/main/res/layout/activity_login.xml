@@ -56,6 +56,25 @@
         android:padding="30dp"
         >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome back!"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We are glad to see you again"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/secondary_font_color"
+            android:layout_marginBottom="30dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,36 +89,21 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_regular"/>
 
-            <LinearLayout
-                android:id="@+id/loginEmailContainer"
+            <EditText
+                android:id="@+id/loginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/form_field"
-                android:gravity="center_vertical"
-                android:padding="10dp"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/email"
-                    android:contentDescription="Email Icon"
-                    android:layout_marginEnd="10dp"
-                    />
-
-                <EditText
-                    android:id="@+id/loginEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:hint="e.g name@example.com"
-                    android:textColorHint="@color/sf_light"
-                    android:textColor="@color/black"
-                    android:background="@null"
-                    android:textSize="16dp"
-                    android:fontFamily="@font/poppins_regular"
-                    />
-            </LinearLayout>
+                android:drawableStart="@drawable/email"
+                android:padding="15dp"
+                android:drawablePadding="15dp"
+                android:inputType="textEmailAddress"
+                android:hint="e.g name@example.com"
+                android:textColorHint="@color/sf_light"
+                android:textColor="@color/black"
+                android:background="@drawable/form_outline"
+                android:textSize="16dp"
+                android:fontFamily="@font/poppins_regular"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -125,36 +129,21 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_regular"/>
 
-            <LinearLayout
-                android:id="@+id/loginPasswordContainer"
+            <EditText
+                android:id="@+id/loginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/form_field"
-                android:gravity="center_vertical"
-                android:padding="10dp"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/password"
-                    android:contentDescription="Password Icon"
-                    android:layout_marginEnd="10dp"
-                    />
-
-                <EditText
-                    android:id="@+id/loginPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:hint="••••••••••"
-                    android:textColorHint="@color/sf_light"
-                    android:textColor="@color/black"
-                    android:background="@null"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/poppins_regular"
-                    />
-            </LinearLayout>
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:drawableStart="@drawable/password"
+                android:drawablePadding="10dp"
+                android:hint="••••••••••"
+                android:textColorHint="@color/sf_light"
+                android:textColor="@color/black"
+                android:background="@drawable/form_outline"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                />
 
             <TextView
                 android:layout_width="wrap_content"

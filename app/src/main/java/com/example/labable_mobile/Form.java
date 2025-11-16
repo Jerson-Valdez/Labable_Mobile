@@ -22,13 +22,8 @@ public class Form {
 
     private static TextView getErrorView(View child) {
         ViewGroup group = (ViewGroup) child.getParent();
-        int childCount = group.getChildCount();
-
-        int elIndex = group.indexOfChild(child);
-
-        if (elIndex >= 0 && elIndex < childCount - 1) return (TextView) group.getChildAt(elIndex + 1);
-
-        return null;
+        View error = group.getChildAt(group.getChildCount() - 1);
+        return error != null ? (TextView) error : null;
     }
 
     private static boolean isEmailValid(String email) {
@@ -47,8 +42,8 @@ public class Form {
         return address.matches(ADDRESS_PATTERN);
     }
 
-    public static TextWatcher nameListener(LinearLayout container) {
-        TextView errorView = getErrorView(container);
+    public static TextWatcher nameListener(View field) {
+        TextView errorView = getErrorView(field);
         assert  errorView != null;
 
         return new TextWatcher() {
@@ -79,8 +74,8 @@ public class Form {
         };
     }
 
-    public static TextWatcher emailListener(boolean login, AccountManager accountManager, LinearLayout container) {
-        TextView errorView = getErrorView(container);
+    public static TextWatcher emailListener(boolean login, AccountManager accountManager, View field) {
+        TextView errorView = getErrorView(field);
         assert  errorView != null;
 
         return new TextWatcher() {
@@ -119,8 +114,8 @@ public class Form {
         };
     }
 
-    public static TextWatcher phoneListener(LinearLayout container) {
-        TextView errorView = getErrorView(container);
+    public static TextWatcher phoneListener(View field) {
+        TextView errorView = getErrorView(field);
         assert  errorView != null;
 
         return new TextWatcher() {
@@ -151,8 +146,8 @@ public class Form {
         };
     }
 
-    public static TextWatcher addressListener(LinearLayout container) {
-        TextView errorView = getErrorView(container);
+    public static TextWatcher addressListener(View field) {
+        TextView errorView = getErrorView(field);
         assert  errorView != null;
 
         return new TextWatcher() {
@@ -183,8 +178,8 @@ public class Form {
         };
     }
 
-    public static TextWatcher passwordListener(boolean login, LinearLayout container) {
-        TextView errorView = getErrorView(container);
+    public static TextWatcher passwordListener(boolean login, View field) {
+        TextView errorView = getErrorView(field);
         assert  errorView != null;
 
         return new TextWatcher() {
@@ -213,8 +208,8 @@ public class Form {
         };
     }
 
-    public static TextWatcher confirmPasswordListener( LinearLayout container, EditText password) {
-        TextView errorView = getErrorView(container);
+    public static TextWatcher confirmPasswordListener(View field, EditText password) {
+        TextView errorView = getErrorView(field);
         assert  errorView != null;
 
         return new TextWatcher() {

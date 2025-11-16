@@ -55,7 +55,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:background="@drawable/circle_shadow"
             android:orientation="vertical"
             android:padding="30dp"
@@ -100,28 +99,20 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:fontFamily="@font/poppins_regular"/>
-                    <LinearLayout
-                        android:id="@+id/registerFirstNameContainer"
+
+                    <EditText
+                        android:id="@+id/registerFirstName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="@drawable/form_field"
-                        android:gravity="center_vertical"
+                        android:inputType="text"
+                        android:hint="e.g Juan"
                         android:padding="10dp"
-                        >
-                        <EditText
-                            android:id="@+id/registerFirstName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="text"
-                            android:hint="e.g Juan"
-                            android:textColorHint="@color/sf_light"
-                            android:textColor="@color/black"
-                            android:background="@null"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/poppins_regular"
-                            />
-                    </LinearLayout>
+                        android:textColorHint="@color/sf_light"
+                        android:textColor="@color/black"
+                        android:background="@drawable/form_outline"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_regular"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -132,6 +123,7 @@
                         android:textColor="@color/red_dark"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -145,28 +137,20 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:fontFamily="@font/poppins_regular"/>
-                    <LinearLayout
-                        android:id="@+id/registerLastNameContainer"
+
+                    <EditText
+                        android:id="@+id/registerLastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="@drawable/form_field"
-                        android:gravity="center_vertical"
+                        android:inputType="text"
+                        android:hint="e.g Dela Cruz"
                         android:padding="10dp"
-                        >
-                        <EditText
-                            android:id="@+id/registerLastName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="text"
-                            android:hint="e.g Dela Cruz"
-                            android:textColorHint="@color/sf_light"
-                            android:textColor="@color/black"
-                            android:background="@null"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/poppins_regular"
-                            />
-                    </LinearLayout>
+                        android:textColorHint="@color/sf_light"
+                        android:textColor="@color/black"
+                        android:background="@drawable/form_outline"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_regular"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -192,35 +176,20 @@
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_regular"/>
 
-                <LinearLayout
-                    android:id="@+id/registerEmailContainer"
+                <EditText
+                    android:id="@+id/registerEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/form_field"
-                    android:gravity="center_vertical"
+                    android:background="@drawable/form_outline"
+                    android:fontFamily="@font/poppins_regular"
+                    android:drawableStart="@drawable/email"
+                    android:drawablePadding="15dp"
                     android:padding="10dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/email"
-                        android:contentDescription="Email Icon"
-                        android:layout_marginEnd="10dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/registerEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:fontFamily="@font/poppins_regular"
-                        android:hint="e.g name@example.com"
-                        android:textColorHint="@color/sf_light"
-                        android:textColor="@color/black"
-                        android:inputType="textEmailAddress"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                    android:hint="e.g name@example.com"
+                    android:textColorHint="@color/sf_light"
+                    android:textColor="@color/black"
+                    android:inputType="textEmailAddress"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -246,36 +215,21 @@
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_regular"/>
 
-                <LinearLayout
-                    android:id="@+id/registerPhoneContainer"
+                <EditText
+                    android:id="@+id/registerPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/form_field"
-                    android:gravity="center_vertical"
+                    android:inputType="phone"
+                    android:drawableStart="@drawable/phone"
+                    android:drawablePadding="15dp"
                     android:padding="10dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/phone"
-                        android:contentDescription="Email Icon"
-                        android:layout_marginEnd="10dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/registerPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="phone"
-                        android:hint="e.g 09934128934"
-                        android:textColorHint="@color/sf_light"
-                        android:textColor="@color/black"
-                        android:background="@null"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_regular"
-                        />
-                </LinearLayout>
+                    android:hint="e.g 09934128934"
+                    android:textColorHint="@color/sf_light"
+                    android:textColor="@color/black"
+                    android:background="@drawable/form_outline"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -301,36 +255,21 @@
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_regular"/>
 
-                <LinearLayout
-                    android:id="@+id/registerAddressContainer"
+                <EditText
+                    android:id="@+id/registerAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/form_field"
-                    android:gravity="center_vertical"
+                    android:inputType="textLongMessage"
+                    android:drawableStart="@drawable/location"
+                    android:drawablePadding="15dp"
+                    android:hint="e.g Sitio Uli, Uli, Pinalagdan, Paombong, Bulacan"
+                    android:textColorHint="@color/sf_light"
+                    android:textColor="@color/black"
                     android:padding="10dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/location"
-                        android:contentDescription="Email Icon"
-                        android:layout_marginEnd="10dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/registerAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textLongMessage"
-                        android:hint="e.g Sitio Uli, Uli, Pinalagdan, Paombong, Bulacan"
-                        android:textColorHint="@color/sf_light"
-                        android:textColor="@color/black"
-                        android:background="@null"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_regular"
-                        />
-                </LinearLayout>
+                    android:background="@drawable/form_outline"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_regular"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -356,35 +295,20 @@
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_regular"/>
 
-                <LinearLayout
-                    android:id="@+id/registerPasswordContainer"
+                <EditText
+                    android:id="@+id/registerPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/form_field"
-                    android:gravity="center_vertical"
+                    android:inputType="textPassword"
+                    android:drawableStart="@drawable/password"
+                    android:drawablePadding="15dp"
                     android:padding="10dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/password"
-                        android:contentDescription="Password Icon"
-                        android:layout_marginEnd="10dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/registerPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:hint="••••••••••"
-                        android:background="@null"
-                        android:textSize="16sp"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        />
-                </LinearLayout>
+                    android:hint="••••••••••"
+                    android:background="@drawable/form_outline"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -410,35 +334,20 @@
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_regular"/>
 
-                <LinearLayout
-                    android:id="@+id/registerConfirmPasswordContainer"
+                <EditText
+                    android:id="@+id/registerConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/form_field"
-                    android:gravity="center_vertical"
+                    android:drawableStart="@drawable/password"
+                    android:drawablePadding="15dp"
                     android:padding="10dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/password"
-                        android:contentDescription="Password Icon"
-                        android:layout_marginEnd="10dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/registerConfirmPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:hint="••••••••••"
-                        android:background="@null"
-                        android:textSize="16sp"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_regular"
-                        />
-                </LinearLayout>
+                    android:inputType="textPassword"
+                    android:hint="••••••••••"
+                    android:background="@drawable/form_outline"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -450,23 +359,16 @@
                     />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/registerTermsContainer"
+            <CheckBox
+                android:id="@+id/registerTerms"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
-
-                <CheckBox
-                    android:id="@+id/registerTerms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:button="@drawable/form_circle_field"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="I agree with the Terms and Conditions"
-                    android:textColor="@color/black" />
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:button="@drawable/form_circle_field"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="I agree with the Terms and Conditions"
+                android:textColor="@color/black"
+                android:layout_marginBottom="20dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/registerButton"

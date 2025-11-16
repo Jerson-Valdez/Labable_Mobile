@@ -75,8 +75,9 @@
                         android:id="@+id/address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/form_field"
+                        android:background="@drawable/form_outline"
                         android:padding="10dp"
+
                         android:textSize="16sp"
                         android:textAlignment="center"
                         android:fontFamily="@font/poppins_regular"
@@ -101,12 +102,13 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:background="@drawable/form_field">
+						android:background="@drawable/form_outline">
 
 						<Spinner
 							android:id="@+id/washableItems"
 							android:layout_width="0dp"
 							android:layout_height="match_parent"
+                            android:padding="10dp"
 							android:layout_weight="1" />
 
 						<ImageButton
@@ -340,7 +342,7 @@
 							android:layout_width="0dp"
 							android:layout_weight="1"
 							android:layout_height="wrap_content"
-							android:background="@drawable/form_field"
+							android:background="@drawable/form_outline"
                             android:layout_marginEnd="20dp"
 							android:padding="10dp"
 							android:gravity="center"
@@ -354,7 +356,7 @@
 							android:layout_width="0dp"
 							android:layout_weight="1"
 							android:layout_height="wrap_content"
-							android:background="@drawable/form_field"
+							android:background="@drawable/form_outline"
 							android:padding="10dp"
 							android:gravity="center"
 							android:text="00:00am/pm"
@@ -362,7 +364,6 @@
 							android:textSize="16sp"
 							android:fontFamily="@font/poppins_regular"/>
 					</LinearLayout>
-
 				</LinearLayout>
 
 				<LinearLayout
@@ -401,6 +402,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="start"
                             android:fontFamily="@font/poppins_regular"
                             android:text="Drop-Off (Deliver to your front door)"
                             android:textColor="@color/black"
