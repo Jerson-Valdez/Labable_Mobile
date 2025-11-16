@@ -28,6 +28,10 @@
         <activity
             android:name=".Register"
             android:exported="false"></activity>
+        <activity android:name=".Terms"
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

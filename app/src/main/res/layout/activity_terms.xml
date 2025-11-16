@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Labable's\nTerms &amp; Conditions"
+                android:textSize="30sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/black"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/sf_light"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agreement to Terms"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textMultiLine"
+                android:background="@null"
+                android:textColor="@color/secondary_font_color"
+                android:editable="false"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="15dp"
+                android:text="By accessing or using our Service, Labable, you agree to be bound by these Terms and Conditions. These Terms govern your access to and use of the Service, which is operated by Labable. If you disagree with any part of the terms, then you may not access the Service."
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/sf_light"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Changes to Terms"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textMultiLine"
+                android:background="@null"
+                android:textColor="@color/secondary_font_color"
+                android:editable="false"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="15dp"
+                android:text="We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days' notice before any new terms take effect. By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms."
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/sf_light"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Conduct"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textMultiLine"
+                android:background="@null"
+                android:textColor="@color/secondary_font_color"
+                android:editable="false"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="15dp"
+                android:text="You agree not to use the Service for any unlawful purpose or any purpose prohibited by this section. You agree not to:
+                                \n1. Harass, abuse, or threaten others or violate any person's legal rights
+                                \n2. Violate any intellectual property rights of Labable or any third party.
+                                \n3. Upload or transmit computer viruses or other software that may damage the property of others.
+                                \n4. Engage in any illegal activities or fraudulent schemes." />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/sf_light"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Intellectual Property"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textMultiLine"
+                android:background="@null"
+                android:textColor="@color/secondary_font_color"
+                android:editable="false"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="15dp"
+                android:text="The Service and its original content (excluding content provided by users), features, and functionality are and will remain the exclusive property of Labable and its licensors. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of Labable."
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/sf_light"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Termination"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textMultiLine"
+                android:background="@null"
+                android:textColor="@color/secondary_font_color"
+                android:editable="false"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="15dp"
+                android:text="We may terminate or suspend your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.\n\nUpon termination, your right to use the Service will immediately cease."
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/sf_light"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Limitation of Liability"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textMultiLine"
+                android:background="@null"
+                android:editable="false"
+                android:textColor="@color/secondary_font_color"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="15dp"
+                android:text="
+In no event shall Labable, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
+
+\n1. Your access to or use of, or inability to access or use, the Service.
+\n2. Any conduct or content of any third party on the Service.
+\n3. Any unauthorized access, use, or alteration of your transmissions or content." />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/sf_light"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Governing Law"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textMultiLine"
+                android:editable="false"
+                android:background="@null"
+                android:textColor="@color/secondary_font_color"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"
+                android:justificationMode="inter_word"
+                android:layout_marginBottom="30dp"
+                android:text="These Terms shall be governed and construed in accordance with the laws of the Philippines, and the courts in Malolos, Bulacan, shall have jurisdiction over any claims arising from the use of the Service, without regard to its conflict of law provisions."
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/termsConfirmation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/black_rounded"
+                android:padding="20dp"
+                android:textAllCaps="false"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_medium"
+                android:text="I hereby accept the above Terms &amp; Conditions"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

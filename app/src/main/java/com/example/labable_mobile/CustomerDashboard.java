@@ -5,6 +5,7 @@ import static android.view.View.TEXT_ALIGNMENT_CENTER;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,6 +89,8 @@ public class CustomerDashboard extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
+
+        Log.d("Terms", "Bleg");
 
         if (intent != null && intent.getExtras() != null) {
             Object managerObj = intent.getExtras().getSerializable("accountManager");
