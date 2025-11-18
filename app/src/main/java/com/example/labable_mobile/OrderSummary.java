@@ -118,8 +118,6 @@ public class OrderSummary extends AppCompatActivity {
             account.setOrders(orders);
             intent.putExtra("accountManager", accountManager);
 
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            
             startActivity(intent);
             finishAffinity();
         });
